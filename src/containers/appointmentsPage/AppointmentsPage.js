@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AppointmentForm } from "../../components/appointmentForm/AppointmentForm";
 import { TileList } from "../../components/tileList/TileList";
 
-export const AppointmentsPage = ({ appointments, contacts, addAppointment }) => {
+export const AppointmentsPage = ({ appointments, addAppointment, contacts }) => {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [date, setDate] = useState("");
@@ -11,10 +11,8 @@ export const AppointmentsPage = ({ appointments, contacts, addAppointment }) => 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Add new appointment using the addAppointment callback function
     addAppointment({ name, contact, date, time });
 
-    // Clear the form fields
     setName("");
     setContact("");
     setDate("");
