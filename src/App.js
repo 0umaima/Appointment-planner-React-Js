@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route, Navigate } from "react-router-dom"
 import Root, { ROUTES } from "./components/root/Root";
 import { AppointmentsPage } from "./containers/appointmentsPage/AppointmentsPage";
@@ -6,7 +6,7 @@ import { ContactsPage } from "./containers/contactsPage/ContactsPage";
 
 function App() {
   
-    const [contacts, setContacs] = useState([]);
+    const [contacts, setContacts] = useState([]);
     const[appointments, setAppointments] = useState([])
   
     const addContact = (name, phone, email) => {
