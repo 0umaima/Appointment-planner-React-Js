@@ -1,31 +1,44 @@
 import React, { useState } from "react";
-
 import { AppointmentForm } from "../../components/appointmentForm/AppointmentForm";
 import { TileList } from "../../components/tileList/TileList";
 
-export const AppointmentsPage = () => {
-  /*
-  Define state variables for 
-  appointment info
-  */
+export const AppointmentsPage = ({ appointments, contacts, addAppointment }) => {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    /*
-    Add contact info and clear data  
-    */
-   
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Add new appointment using the addAppointment callback function
+    addAppointment({ name, contact, date, time });
+
+    // Clear the form fields
+    setName("");
+    setContact("");
+    setDate("");
+    setTime("");
   };
 
   return (
     <div>
-      <section>
-        <h2>Add Appointment</h2>
-      </section>
-      <hr />
-      <section>
-        <h2>Appointments</h2>
-      </section>
+      <h2>Add Appointment</h2>
+      <AppointmentForm
+        name={name}
+        setName={setName}
+        contact={contact}
+        setContact={setContact}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
+        handleSubmit={handleSubmit}
+        contacts={contacts}
+      />
+
+      <h2>Appointments</h2>
+      <TileList data={appointments} />
     </div>
   );
 };
