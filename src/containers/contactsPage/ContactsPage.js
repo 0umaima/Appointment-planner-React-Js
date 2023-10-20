@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
@@ -9,11 +9,9 @@ export const ContactsPage = ({ contacts, addContact }) => {
   const [email, setEmail] = useState("");
   const [isDuplicate, setIsDuplicate] = useState(false);
 
-  const handleNameChange = (e) => {
-    const newContactName = e.target.value;
-    setName(newContactName);
-    setIsDuplicate(contacts.some((contact) => contact.name === newContactName));
-  };
+  useEffect(() => {
+    setIsDuplicate(contacts.some((contact) => contact.name === name));
+  }, [contacts, name]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
